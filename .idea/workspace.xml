@@ -35,7 +35,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1nQSeDRS4o7mhFPDTRT4JycTCY7" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -77,14 +77,18 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="516" y="297" width="334" height="207" key="Github.ShareDialog" timestamp="1612091971845">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="516" y="297" width="334" height="207" key="Github.ShareDialog/0.27.1366.741@0.27.1366.741" timestamp="1612091971845" />
     <state x="172" y="31" width="1022" height="737" key="SettingsEditor" timestamp="1612091168912">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="172" y="31" width="1022" height="737" key="SettingsEditor/0.27.1366.741@0.27.1366.741" timestamp="1612091168912" />
-    <state x="278" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1612091655664">
+    <state x="278" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1612092212017">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state x="278" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1366.741@0.27.1366.741" timestamp="1612091655664" />
+    <state x="278" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1366.741@0.27.1366.741" timestamp="1612092212017" />
     <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1611322522743">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
