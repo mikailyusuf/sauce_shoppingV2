@@ -41,6 +41,26 @@ class ProductDetail(generics.GenericAPIView):
             return Response(status=status.HTTP_204_NO_CONTENT)
         return Response(status=status.HTTP_401_UNAUTHORIZED)
 
+class GetProductsView(generics.GenericAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+    serializer_class = ProductSerializer
+
+    def get(self, request, format=None):
+        products = Products.objects.all()
+        serializer = self.serializer_class(products,many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class GetProductsCategoryView(generics.GenericAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+    serializer_class = ProductSerializer
+
+    def get(self, request, format=None):
+        category = request.data['category']
+        products = Products.objects.filter(category= category)
+        serializer = self.serializer_class(products,many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 class UploadProductView(generics.GenericAPIView):
     serializer_class = ProductSerializer
