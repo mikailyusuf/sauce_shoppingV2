@@ -1,10 +1,11 @@
 from django.db import models
 
 from authentication.models import User
+from sauce_shopping.storage_backend import PublicMediaStorage
 
 
 class Image(models.Model):
-    image = models.ImageField(blank=True, null=True, upload_to='images')
+    image = models.ImageField(blank=True, null=True,storage=PublicMediaStorage())
 
 
 class Products(models.Model):

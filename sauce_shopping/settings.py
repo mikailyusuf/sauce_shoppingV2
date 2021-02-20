@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import datetime
 import os
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = ')ly=--v@cp(^pkdod7-tkmky64hd8d&08=)=#lbxk$^)y9-)81'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['sauce-shopping.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['sauce-shopping.herokuapp.com', '127.0.0.1']
 AUTH_USER_MODEL = 'authentication.User'
 
 # Application definition
@@ -42,7 +43,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     'authentication',
     'products',
-    'orders'
+    'orders',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -153,3 +155,30 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+
+
+
+AWS_ACCESS_KEY_ID = config('ACCESS_KEY')
+AWS_SECRET_ACCESS_KEY = config('SECRET_KEY')
+AWS_STORAGE_BUCKET_NAME = 'sauce-shopping'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+AWS_LOCATION = 'static'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'sauce_shopping/static'),
+]
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+
+AWS_PUBLIC_MEDIA_LOCATION = 'media/public'
+DEFAULT_FILE_STORAGE = 'sauce_shopping.storage_backends.PublicMediaStorage'
+
+AWS_PRIVATE_MEDIA_LOCATION = 'media/private'
+PRIVATE_FILE_STORAGE = 'mysite.storage_backends.PrivateMediaStorage'
+
+
+
+DEFAULT_FILE_STORAGE = 'sauce_shopping.storage_backend.MediaStorage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
