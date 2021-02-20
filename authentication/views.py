@@ -13,6 +13,8 @@ from authentication.models import User
 # from authentication.renderers import UserRenderer
 from authentication.serializers import RegisterSerializer,\
     EmailVerificationSerializer, LoginSerializer,LogoutSerializer
+from authentication.utils import Utils
+
 
 class RegisterView(generics.GenericAPIView):
     serializer_class = RegisterSerializer
@@ -36,7 +38,16 @@ class RegisterView(generics.GenericAPIView):
         data = {'email_body': email_body, 'to_email': user.email,
                 'email_subject': 'Verify your email'}
 
-        # Utils.send_email(data)
+        # try:
+        #     Utils.send_email(data)
+        # except Exception as e:
+        #     User.objects.get(email=user_data['email']).delete()
+        #     print(str(e))
+        #     error = {
+        #         "message":str(e)
+        #     }
+        #     return Response(error, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
         return Response(user_data, status=status.HTTP_201_CREATED)
 
 class VerifyEmail(views.APIView):
